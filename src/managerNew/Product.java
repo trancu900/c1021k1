@@ -22,6 +22,24 @@ public class Product implements Comparable {
         this.quantity = quantity;
     }
 
+    public Product(String raw) {
+        String[] strings = raw.split(",");
+        id = Integer.parseInt(strings[0]);
+        name = strings[1];
+        price = Double.parseDouble(strings[2]);
+        quantity = Integer.parseInt(strings[3]);
+    }
+
+    public static Product parseProduct(String raw) {
+        String[] strings = raw.split(",");
+        int id = Integer.parseInt(strings[0]);
+        String name = strings[1];
+        double price = Double.parseDouble(strings[2]);
+        int quantity = Integer.parseInt(strings[3]);
+        return new Product(id, name, price, quantity);
+    }
+
+
     public int getId() {
         return id;
     }
@@ -56,12 +74,7 @@ public class Product implements Comparable {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                '}';
+        return String.format("%d,%s,%f,%d", id, name, price, quantity);
     }
 
     @Override

@@ -4,21 +4,26 @@ package managerNew.old;
 import managerNew.PriceSortASC;
 import managerNew.PriceSortDESC;
 import managerNew.Product;
+import managerNew.utils.CSVUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class ProductManager {
-    private List<Product> products = new ArrayList<>();
-
+    public final static String PATH = "data/products.csv";
     Scanner scanner = new Scanner(System.in);
 
     public ProductManager() {
-        products.add(new Product(2, "duong", 62, 5));
-        products.add(new Product(3, "dan", 74, 5));
-        products.add(new Product(4, "anh", 44, 5));
-        products.add(new Product(5, "cu", 43, 5));
+    }
+
+    public List<Product> getProducts() {
+        List<Product> newProducts = new ArrayList<>();
+        List<String> records = CSVUtils.read(PATH);
+        for (String record : records) {
+            newProducts.add(Product.parseProduct(record));
+        }
+        return newProducts;
     }
 
     public void add() {
@@ -36,7 +41,12 @@ public class ProductManager {
             int quantity = scanner.nextInt();
             scanner.nextLine();
             Product product = new Product(id, name, price, quantity);
+            List<Product> products = getProducts();
+
             products.add(product);
+
+            CSVUtils.write(PATH,products);
+
             System.out.println(product);
             System.out.println("Nhấn 'y' để sản phẩm mới \t|\t 'q' để quay lại \t|\t 't' để thoát");
             System.out.print(" ⭆ ");
@@ -74,6 +84,7 @@ public class ProductManager {
     }
 
     public void show() {
+        List<Product> products = getProducts();
         for (Product product : products) {
             System.out.println(product.toString());
         }
@@ -83,6 +94,7 @@ public class ProductManager {
         System.out.println("Nhap ten san pham: ");
         String name = scanner.nextLine().toLowerCase();
         boolean found = false;
+        List<Product> products=getProducts();
         for (Product product : products) {
             if (product.getName().toLowerCase().contains(name)) {
                 System.out.println(product);
@@ -104,6 +116,7 @@ public class ProductManager {
     }
 
     public Product findById(int id) {
+        List<Product> products=getProducts();
         for (Product product : products) {
             if (product.getId() == id) {
                 return product;
@@ -113,6 +126,7 @@ public class ProductManager {
     }
 
     public void sort() {
+        List<Product> products = getProducts();
         do {
             System.out.println("ban muon sap xep theo: ");
             System.out.println("1: gia giam dan");
