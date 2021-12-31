@@ -1,6 +1,6 @@
 package vn.tvc.web;
 
-public class CongDan  implements ICapCanCuocCD{
+public class CongDan implements ICapCanCuocCD, Runnable {
     public CanCanCD cancuoccd;
     private String fullName;
 
@@ -26,5 +26,15 @@ public class CongDan  implements ICapCanCuocCD{
     public GiayGTCA getGiayGTCA() {
         System.out.println("Dang xin giay gioi thieu tu cong an");
         return new GiayGTCA();
+    }
+
+    @Override
+    public void canCuocCDHoanThanh(CanCanCD canCanCD) {
+        System.out.println("Cong dan da nhan can cuoc CD");
+    }
+
+    @Override
+    public void run() {
+        System.out.println("Cong dan dang chay");
     }
 }
