@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class ProductView {
 
-    private ProductService productService = new ProductService();
+    private IProductService productService = ProductService.getInstance();
     Scanner scanner = new Scanner(System.in);
 
     public void menu() {
@@ -55,7 +55,7 @@ public class ProductView {
                 case 5:
                     System.out.println("Nhap ten san pham: ");
                     String name = scanner.nextLine().toLowerCase();
-                    productService.findByName(null);
+                    productService.findByName(name);
                     break;
                 case 6:
                     productService.sort();

@@ -4,7 +4,7 @@ public class NhaNuoc {
 
     public static void main(String[] args) {
         NhaNuoc nhaNuoc = new NhaNuoc();
-        CongDan cd1 = new CongDan("Le Thi Dan");
+        ObjectNew cd1 = new ObjectNew("Le Thi Dan");
         nhaNuoc.capCanCuocCD(cd1);
 
     }

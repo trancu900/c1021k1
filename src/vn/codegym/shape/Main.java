@@ -7,7 +7,7 @@ import java.util.Collections;
 public class Main {
     public static void main(String[] args) {
         Object cat = new Cat("BTan");
-        Animal bird = new Bird("Dan dang cang thang");
+        Bird bird = new Bird("Dan dang cang thang");
         Crocodile crocodile = new Crocodile("Duong Cu Dem");
         Oc oc = new Oc("Rich kid");
         //show(oc);

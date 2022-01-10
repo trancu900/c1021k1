@@ -8,17 +8,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ProductService {
+public class ProductService implements IProductService {
+    private static ProductService instance;
+    private ProductService() {
+    }
+    public static ProductService getInstance() {
+        if (instance == null)
+            instance = new ProductService();
+        return instance;
+    }
+
     private List<Product> products = new ArrayList<>();
 
     Scanner scanner = new Scanner(System.in);
 
-    public ProductService() {
-        products.add(new Product(2, "duong", 62, 5));
-        products.add(new Product(3, "dan", 74, 5));
-        products.add(new Product(4, "anh", 44, 5));
-        products.add(new Product(5, "cu", 43, 5));
-    }
+//    public ProductService() {
+//        products.add(new Product(2, "duong", 62, 5));
+//        products.add(new Product(3, "dan", 74, 5));
+//        products.add(new Product(4, "anh", 44, 5));
+//        products.add(new Product(5, "cu", 43, 5));
+//    }
 
     public void add(Product product) {
         products.add(product);
